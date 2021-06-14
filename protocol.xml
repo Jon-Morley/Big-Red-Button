@@ -61,13 +61,129 @@ DATE          VERSION    AUTHOR              COMMENTS
 	<DeviceOID />
 	<ElementType>Management System</ElementType>
 	<Type relativeTimers="true">virtual</Type>
-	<Display defaultPage="General" pageOrder="General" wideColumnPages="General" />
+	<Display defaultPage="General" pageOrder="Authentication;General" wideColumnPages="General" />
 	<SNMP includepages="true">auto</SNMP>
 	<Params>
 		<Param id="2">
 			<Name>AfterStartup</Name>
 			<Description>After Startup</Description>
 			<Type>dummy</Type>
+		</Param>
+		<Param id="3" trending="false" save="true">
+			<Name>username</Name>
+			<Description>Username</Description>
+			<Information>
+				<Subtext>The username required to login into the device</Subtext>
+				<Includes>
+					<Include>time</Include>
+					<Include>range</Include>
+					<Include>steps</Include>
+					<Include>units</Include>
+				</Includes>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Authentication</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Alarm>
+				<Monitored>false</Monitored>
+			</Alarm>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="53" setter="true">
+			<Name>username</Name>
+			<Description>Username</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Authentication</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="">string</Type>
+			</Measurement>
+		</Param>
+		<Param id="4" trending="false" save="true">
+			<Name>password</Name>
+			<Description>Password</Description>
+			<Information>
+				<Subtext>The password required to login into the device</Subtext>
+				<Includes>
+					<Include>time</Include>
+					<Include>range</Include>
+					<Include>steps</Include>
+					<Include>units</Include>
+				</Includes>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Authentication</Page>
+						<Column>0</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Alarm>
+				<Monitored>false</Monitored>
+			</Alarm>
+			<Measurement>
+				<Type options="password">string</Type>
+			</Measurement>
+		</Param>
+		<Param id="54" setter="true">
+			<Name>password</Name>
+			<Description>Password</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Authentication</Page>
+						<Column>0</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="password">string</Type>
+			</Measurement>
 		</Param>
 		<Param id="1000">
 			<Name>Endpoints</Name>
@@ -225,11 +341,11 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Measurement>
 		</Param>
 		<Param id="1081" trending="false">
-			<Name>HTTP_Debug</Name>
-			<Description>HTTP debug from QAction 1080</Description>
+			<Name>GetInitialEndPointInfo_Output</Name>
+			<Description>HTTP return from QAction 1080/Session 1030</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>HTTP debug from QAction 1080</Subtext>
+				<Subtext>HTTP return from QAction 1080/Session 1030</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>other</RawType>
@@ -252,14 +368,11 @@ DATE          VERSION    AUTHOR              COMMENTS
 		</Param>
 	</Params>
 	<HTTP>
-		<Session id="1030" name="GetStuff">
-			<Connection id="1" name="GetStuff">
+		<Session id="1030" name="GetInitialEndPointInfo" loginMethod="credentials" userName="3" password="4" keepAlive="true" ignoreTimeout="true">
+			<Connection id="1" name="GetInitialEndPointInfo">
 				<Request verb="GET" pid="1040">
 				</Request>
-				<Response statusCode="100">
-					<Headers>
-						<Header key="Content-Type" pid="200" />
-					</Headers>
+				<Response statusCode="200">
 					<Content pid="1081" />
 				</Response>
 			</Connection>
@@ -275,7 +388,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 		<QAction id="1080" name="Poll endpoints" encoding="csharp" triggers="1080">
 			
 		</QAction>
-		<QAction id="1090" name="Dummy" encoding="csharp" triggers="1080">
+		<QAction id="1081" name="GetInitialEndPointInfo_ProcessReturn" encoding="csharp" triggers="1081">
 		</QAction>
 		
 	</QActions>

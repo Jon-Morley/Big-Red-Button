@@ -34,9 +34,8 @@ public static class QAction
 
 
 			//debug
-			protocol.SetParameter(Parameter.http_debug_1081, "QAction 1080 ran at " + DateTime.Now.ToString() + " with " + rowObjects.Count.ToString() + "entries in the table");
+			protocol.SetParameter(Parameter.getinitialendpointinfo_output_1081, "QAction 1080 ran at " + DateTime.Now.ToString() + " with " + rowObjects.Count.ToString() + "entries in the table");
 
-			//hello this is a test comment
 		}
 		catch (Exception ex)
 		{
