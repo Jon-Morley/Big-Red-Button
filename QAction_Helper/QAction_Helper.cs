@@ -18,11 +18,26 @@ public static class Parameter
 	public const int password_4 = 4;
 	/// <summary>PID: 4 | Type: read</summary>
 	public const int password = 4;
+	/// <summary>PID: 5 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int api_endpoint_5 = 5;
+	/// <summary>PID: 5 | Type: read</summary>
+	public const int api_endpoint = 5;
+	/// <summary>PID: 200 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int getupstreamsstatuscode_200 = 200;
+	/// <summary>PID: 200 | Type: read</summary>
+	public const int getupstreamsstatuscode = 200;
 	/// <summary>PID: 1081 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public const int getinitialendpointinfo_output_1081 = 1081;
 	/// <summary>PID: 1081 | Type: read</summary>
 	public const int getinitialendpointinfo_output = 1081;
+	/// <summary>PID: 1082 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int getinitialendpointinfo_debug_1082 = 1082;
+	/// <summary>PID: 1082 | Type: read</summary>
+	public const int getinitialendpointinfo_debug = 1082;
 	public class Write
 	{
 		/// <summary>PID: 53 | Type: write</summary>
@@ -35,6 +50,11 @@ public static class Parameter
 		public const int password_54 = 54;
 		/// <summary>PID: 54 | Type: write</summary>
 		public const int password = 54;
+		/// <summary>PID: 55 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int api_endpoint_55 = 55;
+		/// <summary>PID: 55 | Type: write</summary>
+		public const int api_endpoint = 55;
 		/// <summary>PID: 1080 | Type: write</summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public const int button_poll_endpoints_1080 = 1080;
@@ -116,7 +136,9 @@ public class WriteParameters
 	public System.Object Username {get { return Protocol.GetParameter(53); }set { Protocol.SetParameter(53, value); }}
 	/// <summary>PID: 54  | Type: write</summary>
 	public System.Object Password {get { return Protocol.GetParameter(54); }set { Protocol.SetParameter(54, value); }}
-	/// <summary>PID: 1080  | Type: write | DISCREETS: Poll Endpoints = 1</summary>
+	/// <summary>PID: 55  | Type: write</summary>
+	public System.Object Api_endpoint {get { return Protocol.GetParameter(55); }set { Protocol.SetParameter(55, value); }}
+	/// <summary>PID: 1080  | Type: write | DISCREETS: Poll Endpoints = 0</summary>
 	public System.Object Button_poll_endpoints {get { return Protocol.GetParameter(1080); }set { Protocol.SetParameter(1080, value); }}
 	public SLProtocolExt Protocol;
 	public WriteParameters(SLProtocolExt protocol)
@@ -133,8 +155,13 @@ public interface SLProtocolExt : SLProtocol
 	object Username { get; set; }
 	object Password_4 { get; set; }
 	object Password { get; set; }
+	object Api_endpoint_5 { get; set; }
+	object Api_endpoint { get; set; }
 	object Username_53 { get; set; }
 	object Password_54 { get; set; }
+	object Api_endpoint_55 { get; set; }
+	object Getupstreamsstatuscode_200 { get; set; }
+	object Getupstreamsstatuscode { get; set; }
 	object Endpointsinstance_1001 { get; set; }
 	object Endpointsinstance { get; set; }
 	object Endpoints_name_1002 { get; set; }
@@ -149,6 +176,8 @@ public interface SLProtocolExt : SLProtocol
 	object Button_poll_endpoints { get; set; }
 	object Getinitialendpointinfo_output_1081 { get; set; }
 	object Getinitialendpointinfo_output { get; set; }
+	object Getinitialendpointinfo_debug_1082 { get; set; }
+	object Getinitialendpointinfo_debug { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
@@ -167,12 +196,25 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Password_4 {get { return GetParameter(4); }set { SetParameter(4, value); }}
 	/// <summary>PID: 4  | Type: read</summary>
 	public System.Object Password {get { return GetParameter(4); }set { SetParameter(4, value); }}
+	/// <summary>PID: 5  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Api_endpoint_5 {get { return GetParameter(5); }set { SetParameter(5, value); }}
+	/// <summary>PID: 5  | Type: read</summary>
+	public System.Object Api_endpoint {get { return GetParameter(5); }set { SetParameter(5, value); }}
 	/// <summary>PID: 53  | Type: write</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Username_53 {get { return GetParameter(53); }set { SetParameter(53, value); }}
 	/// <summary>PID: 54  | Type: write</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Password_54 {get { return GetParameter(54); }set { SetParameter(54, value); }}
+	/// <summary>PID: 55  | Type: write</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Api_endpoint_55 {get { return GetParameter(55); }set { SetParameter(55, value); }}
+	/// <summary>PID: 200  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Getupstreamsstatuscode_200 {get { return GetParameter(200); }set { SetParameter(200, value); }}
+	/// <summary>PID: 200  | Type: read</summary>
+	public System.Object Getupstreamsstatuscode {get { return GetParameter(200); }set { SetParameter(200, value); }}
 	/// <summary>PID: 1001  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Endpointsinstance_1001 {get { return GetParameter(1001); }set { SetParameter(1001, value); }}
@@ -198,15 +240,20 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Endpoints_http_response_1005 {get { return GetParameter(1005); }set { SetParameter(1005, value); }}
 	/// <summary>PID: 1005  | Type: read</summary>
 	public System.Object Endpoints_http_response {get { return GetParameter(1005); }set { SetParameter(1005, value); }}
-	/// <summary>PID: 1080  | Type: write | DISCREETS: Poll Endpoints = 1</summary>
+	/// <summary>PID: 1080  | Type: write | DISCREETS: Poll Endpoints = 0</summary>
 	public System.Object Button_poll_endpoints_1080 {get { return GetParameter(1080); }set { SetParameter(1080, value); }}
-	/// <summary>PID: 1080  | Type: write | DISCREETS: Poll Endpoints = 1</summary>
+	/// <summary>PID: 1080  | Type: write | DISCREETS: Poll Endpoints = 0</summary>
 	public System.Object Button_poll_endpoints {get { return Write.Button_poll_endpoints; }set { Write.Button_poll_endpoints = value; }}
 	/// <summary>PID: 1081  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Getinitialendpointinfo_output_1081 {get { return GetParameter(1081); }set { SetParameter(1081, value); }}
 	/// <summary>PID: 1081  | Type: read</summary>
 	public System.Object Getinitialendpointinfo_output {get { return GetParameter(1081); }set { SetParameter(1081, value); }}
+	/// <summary>PID: 1082  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Getinitialendpointinfo_debug_1082 {get { return GetParameter(1082); }set { SetParameter(1082, value); }}
+	/// <summary>PID: 1082  | Type: read</summary>
+	public System.Object Getinitialendpointinfo_debug {get { return GetParameter(1082); }set { SetParameter(1082, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{

@@ -60,7 +60,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 	<VendorOID>1.3.6.1.4.1.8813.2.XX</VendorOID>
 	<DeviceOID />
 	<ElementType>Management System</ElementType>
-	<Type relativeTimers="true">virtual</Type>
+	<Type relativeTimers="true">http</Type>
 	<Display defaultPage="General" pageOrder="Authentication;General" wideColumnPages="General" />
 	<SNMP includepages="true">auto</SNMP>
 	<Params>
@@ -183,6 +183,94 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Display>
 			<Measurement>
 				<Type options="password">string</Type>
+			</Measurement>
+		</Param>
+		<Param id="5" trending="false" save="true">
+			<Name>API_Endpoint</Name>
+			<Description>API Endpoint</Description>
+			<Information>
+				<Subtext>IP ndpoint of the NGINX API</Subtext>
+				<Includes>
+					<Include>time</Include>
+					<Include>range</Include>
+					<Include>steps</Include>
+					<Include>units</Include>
+				</Includes>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Authentication</Page>
+						<Column>0</Column>
+						<Row>2</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Alarm>
+				<Monitored>false</Monitored>
+			</Alarm>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="55" trending="false" setter="true">
+			<Name>API_Endpoint</Name>
+			<Description>API Endpoint</Description>
+			<Information>
+				<Subtext>IP ndpoint of the NGINX API</Subtext>
+				<Includes>
+					<Include>time</Include>
+					<Include>range</Include>
+					<Include>steps</Include>
+					<Include>units</Include>
+				</Includes>
+			</Information>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Authentication</Page>
+						<Column>0</Column>
+						<Row>2</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Alarm>
+				<Monitored>false</Monitored>
+			</Alarm>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="200" trending="false">
+			<Name>GetUpstreamsStatusCode</Name>
+			<Description>GetUpstreamsStatusCode</Description>
+			<Information>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>false</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
 			</Measurement>
 		</Param>
 		<Param id="1000">
@@ -335,14 +423,14 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<Discreets>
 					<Discreet>
 						<Display>Poll Endpoints</Display>
-						<Value>1</Value>
+						<Value>0</Value>
 					</Discreet>
 				</Discreets>
 			</Measurement>
 		</Param>
 		<Param id="1081" trending="false">
 			<Name>GetInitialEndPointInfo_Output</Name>
-			<Description>HTTP return from QAction 1080/Session 1030</Description>
+			<Description>HTTP Return From QAction 1080/Session 1030</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>HTTP return from QAction 1080/Session 1030</Subtext>
@@ -366,11 +454,37 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<Type>string</Type>
 			</Measurement>
 		</Param>
+		<Param id="1082" trending="false">
+			<Name>GetInitialEndPointInfo_Debug</Name>
+			<Description>Debug for GetIntialEndpoint</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Debug for GetIntialEndpoint</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>3</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
 	</Params>
 	<HTTP>
 		<Session id="1030" name="GetInitialEndPointInfo" loginMethod="credentials" userName="3" password="4" keepAlive="true" ignoreTimeout="true">
 			<Connection id="1" name="GetInitialEndPointInfo">
-				<Request verb="GET" pid="1040">
+				<Request verb="GET" url="/api/6/http/upstreams/">
 				</Request>
 				<Response statusCode="200">
 					<Content pid="1081" />
@@ -385,7 +499,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2">
 			
 		</QAction>
-		<QAction id="1080" name="Poll endpoints" encoding="csharp" triggers="1080">
+		<QAction id="1080" name="Poll endpoints" encoding="csharp" triggers="">
 			
 		</QAction>
 		<QAction id="1081" name="GetInitialEndPointInfo_ProcessReturn" encoding="csharp" triggers="1081">
@@ -402,9 +516,9 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Content>
 		</Group>
 		<Group id="3">
-			<Name>HTTP Get</Name>
+			<Name>HTTP_Get</Name>
 			<Description>HTTP Get</Description>
-			<Type>poll action</Type>
+			<Type>poll</Type>
 			<Content>
 				<Session>1030</Session>
 			</Content>
@@ -421,14 +535,14 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Content>
 		</Trigger>
 		<Trigger id="2">
-			<Name>Manually run Session 1030</Name>
+			<Name>Manually Run Session 1030</Name>
 			<On id="1080">parameter</On>
 			<Time>change</Time>
 			<Type>action</Type>
 			<Content>
 				<Id>3</Id>
 			</Content>
-		</Trigger>
+		</Trigger>		
 	</Triggers>
 	<Actions>
 		<Action id="1">
@@ -442,9 +556,9 @@ DATE          VERSION    AUTHOR              COMMENTS
 			<Type>run actions</Type>
 		</Action>
 		<Action id="3">
-			<Name>Manually run Session 1030</Name>
+			<Name>Manually Run Session 1030</Name>
 			<On id="3">group</On>
-			<Type>run actions</Type>
+			<Type>execute next</Type>
 		</Action>
 	</Actions>
 	<Timers>
@@ -471,6 +585,17 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Content>
 		</Timer>
 	</Timers>
+	<PortSettings name="HTTP Connection">
+		<BusAddress>
+			<Disabled>true</Disabled>
+		</BusAddress>
+		<IPport>
+			<DefaultValue>9090</DefaultValue>
+		</IPport>
+		<Type>
+			<DefaultValue>ip</DefaultValue>
+		</Type>
+	</PortSettings>
 	<VersionHistory>
 		<Branches>
 			<Branch id="1">
