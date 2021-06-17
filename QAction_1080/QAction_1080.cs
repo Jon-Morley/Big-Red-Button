@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Text;
 using Skyline.DataMiner.Net.Messages;
 using Skyline.DataMiner.Scripting;
-using SLNetMessages = Skyline.DataMiner.Net.Messages;
+using Parameter = Skyline.DataMiner.Scripting.Parameter;
 
 
 
@@ -44,9 +44,14 @@ public static class QAction
 			//fill table
 			protocol.endpoints.FillArray(tableRows);
 
+
+
 			*/
 			// sanity check debug
-			protocol.SetParameter(Skyline.DataMiner.Scripting.Parameter.getinitialendpointinfo_debug_1082, "QAction 1080 ran at " + DateTime.Now.ToString());
+
+
+			protocol.SetParameter(Parameter.getinitialendpointinfo_output_1081, "");
+			//protocol.SetParameter(Skyline.DataMiner.Scripting.Parameter.getinitialendpointinfo_debug_1082, "QAction 1080 ran at " + DateTime.Now.ToString());
 
 		}
 		catch (Exception ex)

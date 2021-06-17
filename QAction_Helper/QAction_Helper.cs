@@ -61,7 +61,7 @@ public static class Parameter
 		/// <summary>PID: 1080 | Type: write</summary>
 		public const int button_poll_endpoints = 1080;
 	}
-	public class Endpoints
+	public class Caches
 	{
 		/// <summary>PID: 1000</summary>
 		public const int tablePid = 1000;
@@ -78,24 +78,29 @@ public static class Parameter
 			public const int endpointsinstance = 1001;
 			/// <summary>PID: 1002 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int endpoints_name_1002 = 1002;
+			public const int cache_zone_name_1002 = 1002;
 			/// <summary>PID: 1002 | Type: read</summary>
-			public const int endpoints_name = 1002;
+			public const int cache_zone_name = 1002;
 			/// <summary>PID: 1003 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int endpoints_ipv4_1003 = 1003;
+			public const int cache_peer_id_1003 = 1003;
 			/// <summary>PID: 1003 | Type: read</summary>
-			public const int endpoints_ipv4 = 1003;
+			public const int cache_peer_id = 1003;
 			/// <summary>PID: 1004 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int endpoints_nginx_api_1004 = 1004;
+			public const int cache_peer_server_1004 = 1004;
 			/// <summary>PID: 1004 | Type: read</summary>
-			public const int endpoints_nginx_api = 1004;
+			public const int cache_peer_server = 1004;
 			/// <summary>PID: 1005 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int endpoints_http_response_1005 = 1005;
+			public const int cache_peer_name_1005 = 1005;
 			/// <summary>PID: 1005 | Type: read</summary>
-			public const int endpoints_http_response = 1005;
+			public const int cache_peer_name = 1005;
+			/// <summary>PID: 1006 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int cache_peer_state_1006 = 1006;
+			/// <summary>PID: 1006 | Type: read</summary>
+			public const int cache_peer_state = 1006;
 			public class Write
 			{
 			}
@@ -109,24 +114,29 @@ public static class Parameter
 			public const int endpointsinstance = 0;
 			/// <summary>IDX: 1 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int endpoints_name_1002 = 1;
+			public const int cache_zone_name_1002 = 1;
 			/// <summary>IDX: 1 | Type: read</summary>
-			public const int endpoints_name = 1;
+			public const int cache_zone_name = 1;
 			/// <summary>IDX: 2 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int endpoints_ipv4_1003 = 2;
+			public const int cache_peer_id_1003 = 2;
 			/// <summary>IDX: 2 | Type: read</summary>
-			public const int endpoints_ipv4 = 2;
+			public const int cache_peer_id = 2;
 			/// <summary>IDX: 3 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int endpoints_nginx_api_1004 = 3;
+			public const int cache_peer_server_1004 = 3;
 			/// <summary>IDX: 3 | Type: read</summary>
-			public const int endpoints_nginx_api = 3;
+			public const int cache_peer_server = 3;
 			/// <summary>IDX: 4 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int endpoints_http_response_1005 = 4;
+			public const int cache_peer_name_1005 = 4;
 			/// <summary>IDX: 4 | Type: read</summary>
-			public const int endpoints_http_response = 4;
+			public const int cache_peer_name = 4;
+			/// <summary>IDX: 5 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int cache_peer_state_1006 = 5;
+			/// <summary>IDX: 5 | Type: read</summary>
+			public const int cache_peer_state = 5;
 		}
 	}
 }
@@ -149,7 +159,7 @@ public class WriteParameters
 public interface SLProtocolExt : SLProtocol
 {
 	/// <summary>PID: 1000</summary>
-	EndpointsQActionTable endpoints { get; set; }
+	CachesQActionTable caches { get; set; }
 	object Afterstartup_dummy { get; set; }
 	object Username_3 { get; set; }
 	object Username { get; set; }
@@ -164,14 +174,16 @@ public interface SLProtocolExt : SLProtocol
 	object Getupstreamsstatuscode { get; set; }
 	object Endpointsinstance_1001 { get; set; }
 	object Endpointsinstance { get; set; }
-	object Endpoints_name_1002 { get; set; }
-	object Endpoints_name { get; set; }
-	object Endpoints_ipv4_1003 { get; set; }
-	object Endpoints_ipv4 { get; set; }
-	object Endpoints_nginx_api_1004 { get; set; }
-	object Endpoints_nginx_api { get; set; }
-	object Endpoints_http_response_1005 { get; set; }
-	object Endpoints_http_response { get; set; }
+	object Cache_zone_name_1002 { get; set; }
+	object Cache_zone_name { get; set; }
+	object Cache_peer_id_1003 { get; set; }
+	object Cache_peer_id { get; set; }
+	object Cache_peer_server_1004 { get; set; }
+	object Cache_peer_server { get; set; }
+	object Cache_peer_name_1005 { get; set; }
+	object Cache_peer_name { get; set; }
+	object Cache_peer_state_1006 { get; set; }
+	object Cache_peer_state { get; set; }
 	object Button_poll_endpoints_1080 { get; set; }
 	object Button_poll_endpoints { get; set; }
 	object Getinitialendpointinfo_output_1081 { get; set; }
@@ -183,7 +195,7 @@ public interface SLProtocolExt : SLProtocol
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 {
 	/// <summary>PID: 1000</summary>
-	public EndpointsQActionTable endpoints { get; set; }
+	public CachesQActionTable caches { get; set; }
 	/// <summary>PID: 2  | Type: dummy</summary>
 	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
 	/// <summary>PID: 3  | Type: read</summary>
@@ -222,24 +234,29 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Endpointsinstance {get { return GetParameter(1001); }set { SetParameter(1001, value); }}
 	/// <summary>PID: 1002  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Endpoints_name_1002 {get { return GetParameter(1002); }set { SetParameter(1002, value); }}
+	public System.Object Cache_zone_name_1002 {get { return GetParameter(1002); }set { SetParameter(1002, value); }}
 	/// <summary>PID: 1002  | Type: read</summary>
-	public System.Object Endpoints_name {get { return GetParameter(1002); }set { SetParameter(1002, value); }}
+	public System.Object Cache_zone_name {get { return GetParameter(1002); }set { SetParameter(1002, value); }}
 	/// <summary>PID: 1003  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Endpoints_ipv4_1003 {get { return GetParameter(1003); }set { SetParameter(1003, value); }}
+	public System.Object Cache_peer_id_1003 {get { return GetParameter(1003); }set { SetParameter(1003, value); }}
 	/// <summary>PID: 1003  | Type: read</summary>
-	public System.Object Endpoints_ipv4 {get { return GetParameter(1003); }set { SetParameter(1003, value); }}
+	public System.Object Cache_peer_id {get { return GetParameter(1003); }set { SetParameter(1003, value); }}
 	/// <summary>PID: 1004  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Endpoints_nginx_api_1004 {get { return GetParameter(1004); }set { SetParameter(1004, value); }}
+	public System.Object Cache_peer_server_1004 {get { return GetParameter(1004); }set { SetParameter(1004, value); }}
 	/// <summary>PID: 1004  | Type: read</summary>
-	public System.Object Endpoints_nginx_api {get { return GetParameter(1004); }set { SetParameter(1004, value); }}
+	public System.Object Cache_peer_server {get { return GetParameter(1004); }set { SetParameter(1004, value); }}
 	/// <summary>PID: 1005  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Endpoints_http_response_1005 {get { return GetParameter(1005); }set { SetParameter(1005, value); }}
+	public System.Object Cache_peer_name_1005 {get { return GetParameter(1005); }set { SetParameter(1005, value); }}
 	/// <summary>PID: 1005  | Type: read</summary>
-	public System.Object Endpoints_http_response {get { return GetParameter(1005); }set { SetParameter(1005, value); }}
+	public System.Object Cache_peer_name {get { return GetParameter(1005); }set { SetParameter(1005, value); }}
+	/// <summary>PID: 1006  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Cache_peer_state_1006 {get { return GetParameter(1006); }set { SetParameter(1006, value); }}
+	/// <summary>PID: 1006  | Type: read</summary>
+	public System.Object Cache_peer_state {get { return GetParameter(1006); }set { SetParameter(1006, value); }}
 	/// <summary>PID: 1080  | Type: write | DISCREETS: Poll Endpoints = 0</summary>
 	public System.Object Button_poll_endpoints_1080 {get { return GetParameter(1080); }set { SetParameter(1080, value); }}
 	/// <summary>PID: 1080  | Type: write | DISCREETS: Poll Endpoints = 0</summary>
@@ -257,19 +274,19 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{
-		endpoints = new EndpointsQActionTable(this, 1000, "endpoints");
+		caches = new CachesQActionTable(this, 1000, "caches");
 		Write = new WriteParameters(this);
 	}
 }
 /// <summary>IDX: 0</summary>
-public class EndpointsQActionTable : QActionTable, IEnumerable<EndpointsQActionRow>
+public class CachesQActionTable : QActionTable, IEnumerable<CachesQActionRow>
 {
-	public EndpointsQActionTable(SLProtocol protocol, int tableId, string tableName) : base(protocol, tableId, tableName) { }
+	public CachesQActionTable(SLProtocol protocol, int tableId, string tableName) : base(protocol, tableId, tableName) { }
 	IEnumerator IEnumerable.GetEnumerator() { return (IEnumerator) GetEnumerator(); }
-	public IEnumerator<EndpointsQActionRow> GetEnumerator() { return new QActionTableEnumerator<EndpointsQActionRow>(this); }
+	public IEnumerator<CachesQActionRow> GetEnumerator() { return new QActionTableEnumerator<CachesQActionRow>(this); }
 }
 /// <summary>IDX: 0</summary>
-public class EndpointsQActionRow : QActionTableRow
+public class CachesQActionRow : QActionTableRow
 {
 	/// <summary>PID: 1001 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
@@ -278,27 +295,32 @@ public class EndpointsQActionRow : QActionTableRow
 	public System.Object Endpointsinstance { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
 	/// <summary>PID: 1002 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Endpoints_name_1002 { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
+	public System.Object Cache_zone_name_1002 { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
 	/// <summary>PID: 1002 | Type: read</summary>
-	public System.Object Endpoints_name { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
+	public System.Object Cache_zone_name { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
 	/// <summary>PID: 1003 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Endpoints_ipv4_1003 { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
+	public System.Object Cache_peer_id_1003 { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
 	/// <summary>PID: 1003 | Type: read</summary>
-	public System.Object Endpoints_ipv4 { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
+	public System.Object Cache_peer_id { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
 	/// <summary>PID: 1004 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Endpoints_nginx_api_1004 { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
+	public System.Object Cache_peer_server_1004 { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
 	/// <summary>PID: 1004 | Type: read</summary>
-	public System.Object Endpoints_nginx_api { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
+	public System.Object Cache_peer_server { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
 	/// <summary>PID: 1005 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Endpoints_http_response_1005 { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
+	public System.Object Cache_peer_name_1005 { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
 	/// <summary>PID: 1005 | Type: read</summary>
-	public System.Object Endpoints_http_response { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
-	public EndpointsQActionRow() : base(0, 5) { }
-	public EndpointsQActionRow(System.Object[] oRow) : base(0, 5, oRow) { }
-	public static implicit operator EndpointsQActionRow(System.Object[] source) { return new EndpointsQActionRow(source); }
-	public static implicit operator System.Object[](EndpointsQActionRow source) { return source.ToObjectArray(); }
+	public System.Object Cache_peer_name { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
+	/// <summary>PID: 1006 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Cache_peer_state_1006 { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	/// <summary>PID: 1006 | Type: read</summary>
+	public System.Object Cache_peer_state { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	public CachesQActionRow() : base(0, 6) { }
+	public CachesQActionRow(System.Object[] oRow) : base(0, 6, oRow) { }
+	public static implicit operator CachesQActionRow(System.Object[] source) { return new CachesQActionRow(source); }
+	public static implicit operator System.Object[](CachesQActionRow source) { return source.ToObjectArray(); }
 }
 }

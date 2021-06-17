@@ -274,15 +274,16 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Measurement>
 		</Param>
 		<Param id="1000">
-			<Name>Endpoints</Name>
-			<Description>Endpoints Table</Description>
+			<Name>Caches</Name>
+			<Description>Caches Table</Description>
 			<Type>array</Type>
 			<ArrayOptions index="0">
-				<ColumnOption idx="0" pid="1001" type="retrieved" options=";save" />
-				<ColumnOption idx="1" pid="1002" type="retrieved" options=";save" />
-				<ColumnOption idx="2" pid="1003" type="retrieved" options=";save" />
-				<ColumnOption idx="3" pid="1004" type="retrieved" options=";save" />
+				<ColumnOption idx="0" pid="1001" type="retrieved" options="" />
+				<ColumnOption idx="1" pid="1002" type="retrieved" options="" />
+				<ColumnOption idx="2" pid="1003" type="retrieved" options="" />
+				<ColumnOption idx="3" pid="1004" type="retrieved" options="" />
 				<ColumnOption idx="4" pid="1005" type="retrieved" options="" />
+				<ColumnOption idx="5" pid="1006" type="retrieved" options="" />
 			</ArrayOptions>
 			<Information>
 				<Subtext>Table describing endpoints</Subtext>
@@ -298,12 +299,12 @@ DATE          VERSION    AUTHOR              COMMENTS
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:1001|0-1002|1-1003|2-1004|3-1005|4,width:113-106-100-183-157,sort:STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:1001|0-1002|1-1003|2-1004|3-1005|4-1006|5,width:113-120-100-183-157-112,sort:STRING-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="1001" trending="false">
 			<Name>EndpointsInstance</Name>
-			<Description>Instance [IDX](Endpoints Table)</Description>
+			<Description>Instance [IDX](Cache Table)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>This is the key used internally by DataMiner to identify the table entries.</Subtext>
@@ -321,11 +322,11 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Measurement>
 		</Param>
 		<Param id="1002" trending="false">
-			<Name>Endpoints_Name</Name>
-			<Description>Endpoint Name(Endpoints Table)</Description>
+			<Name>Cache_Zone_Name</Name>
+			<Description>Cache Zone Name(Cache Table)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>Endpoint Name</Subtext>
+				<Subtext>Cache Zone Name</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>other</RawType>
@@ -340,11 +341,11 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Measurement>
 		</Param>
 		<Param id="1003" trending="false">
-			<Name>Endpoints_IPv4</Name>
-			<Description>Endpoint IPv4(Endpoints Table)</Description>
+			<Name>Cache_Peer_Id</Name>
+			<Description>Cache Peer Id(Cache Table)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>Endpoint IP Address</Subtext>
+				<Subtext>Cache Peer Id</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>other</RawType>
@@ -359,11 +360,11 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Measurement>
 		</Param>
 		<Param id="1004" trending="false">
-			<Name>Endpoints_NGINX_API</Name>
-			<Description>Endpoint NGINX API method(Endpoints Table)</Description>
+			<Name>Cache_Peer_Server</Name>
+			<Description>Cache Peer Server(Cache Table)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>Endpoint NGINX API method</Subtext>
+				<Subtext>Cache Peer Server</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>other</RawType>
@@ -378,11 +379,30 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Measurement>
 		</Param>
 		<Param id="1005" trending="false">
-			<Name>Endpoints_HTTP_response</Name>
-			<Description>Endpoint HTTP response(Endpoints Table)</Description>
+			<Name>Cache_Peer_Name</Name>
+			<Description>Cache Peer Name(Cache Table)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>Endpoint HTTP response</Subtext>
+				<Subtext>Cache Peer Name</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="1006" trending="false">
+			<Name>Cache_Peer_State</Name>
+			<Description>Cache Peer State(Cache Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Cache Peer State</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>other</RawType>
@@ -499,7 +519,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2">
 			
 		</QAction>
-		<QAction id="1080" name="Poll endpoints" encoding="csharp" triggers="">
+		<QAction id="1080" name="Poll endpoints" encoding="csharp" triggers="1080">
 			
 		</QAction>
 		<QAction id="1081" name="GetInitialEndPointInfo_ProcessReturn" encoding="csharp" triggers="1081">

@@ -18,7 +18,7 @@ public static class QAction
 	{
 		try
 		{
-			
+			//protocol.SetParameter(Parameter.getinitialendpointinfo_output_1081, "");	
 		}
 		catch (Exception ex)
 		{
