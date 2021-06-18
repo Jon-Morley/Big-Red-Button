@@ -593,7 +593,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 		<QAction id="1081" name="GetInitialEndPointInfo_ProcessReturn" encoding="csharp" triggers="1081">
 		</QAction>
 		
-		<QAction id="1090" name="SendPatch" encoding="csharp" triggers="1090">
+		<QAction id="1091" name="SendPatch_ProcessReturn" encoding="csharp" triggers="1091">
 		</QAction>
 		
 	</QActions>
