@@ -571,7 +571,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 		</Session>
 		<Session id="1031" name="SendPATCH" loginMethod="credentials" userName="3" password="4" keepAlive="true" ignoreTimeout="true">
 			<Connection id="1" name="SendPATCH">
-				<Request verb="PATCH" url="/api/6/http/upstreams/test/servers/0">
+				<Request verb="PATCH" url="/api/6/http/upstreams/test/servers/0"> <!-- "test" is the name of the Upstream object, servers will be 0 or 1-->
 					<Data>{"down": true }</Data>
 				</Request>
 				<Response statusCode="200">
