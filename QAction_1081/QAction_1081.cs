@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
+
 using Skyline.DataMiner.Scripting;
 using Newtonsoft.Json;
 using Parameter = Skyline.DataMiner.Scripting.Parameter;
@@ -52,10 +53,19 @@ public static class QAction
 
 			List<JToken> toks = obj.Root.Children().ToList<JToken>();
 
+
 			string output = "";
 			foreach(JToken token in toks)
 			{
-				output += token.ToString();
+				JObject prop = (JObject)token;
+				output += prop.Root.Value<string>("zone");
+
+				//output += token.ToString();
+
+				//output += token.Value<string>("zone");
+				//JObject newObj = (JObject)token;
+				//output += newObj.SelectToken("zone").Value<string>();
+
 				/*
 				JToken outer = JToken.Parse(token.ToString());
 				JObject inner = outer.Root.Value<JObject>();

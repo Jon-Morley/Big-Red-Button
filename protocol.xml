@@ -500,6 +500,64 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<Type>string</Type>
 			</Measurement>
 		</Param>
+		<Param id="1090">
+			<Name>Button_send_patch</Name>
+			<Type>write</Type>
+			<Information>
+				<Text>Send Patch</Text>
+				<Subtext>Button to run send patch QAction 1090</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>4</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Send PATCH</Display>
+						<Value>0</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="1091" trending="false">
+			<Name>SendPATCH_Output</Name>
+			<Description>HTTP Return From QAction 1090/Session 1031</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>HTTP return from QAction 1090/Session 1031</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>5</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
 	</Params>
 	<HTTP>
 		<Session id="1030" name="GetInitialEndPointInfo" loginMethod="credentials" userName="3" password="4" keepAlive="true" ignoreTimeout="true">
@@ -508,6 +566,16 @@ DATE          VERSION    AUTHOR              COMMENTS
 				</Request>
 				<Response statusCode="200">
 					<Content pid="1081" />
+				</Response>
+			</Connection>
+		</Session>
+		<Session id="1031" name="SendPATCH" loginMethod="credentials" userName="3" password="4" keepAlive="true" ignoreTimeout="true">
+			<Connection id="1" name="SendPATCH">
+				<Request verb="PATCH" url="/api/6/http/upstreams/test/servers/0">
+					<Data>{"down": true }</Data>
+				</Request>
+				<Response statusCode="200">
+					<Content pid="1091" />
 				</Response>
 			</Connection>
 		</Session>
@@ -523,6 +591,9 @@ DATE          VERSION    AUTHOR              COMMENTS
 			
 		</QAction>
 		<QAction id="1081" name="GetInitialEndPointInfo_ProcessReturn" encoding="csharp" triggers="1081">
+		</QAction>
+		
+		<QAction id="1090" name="SendPatch" encoding="csharp" triggers="1090">
 		</QAction>
 		
 	</QActions>
@@ -541,6 +612,14 @@ DATE          VERSION    AUTHOR              COMMENTS
 			<Type>poll</Type>
 			<Content>
 				<Session>1030</Session>
+			</Content>
+		</Group>
+		<Group id="4">
+			<Name>HTTP_PATCH</Name>
+			<Description>HTTP PATCH</Description>
+			<Type>poll</Type>
+			<Content>
+				<Session>1031</Session>
 			</Content>
 		</Group>
 	</Groups>
@@ -562,7 +641,16 @@ DATE          VERSION    AUTHOR              COMMENTS
 			<Content>
 				<Id>3</Id>
 			</Content>
-		</Trigger>		
+		</Trigger>
+		<Trigger id="3">
+			<Name>Manually Run Session 1031</Name>
+			<On id="1090">parameter</On>
+			<Time>change</Time>
+			<Type>action</Type>
+			<Content>
+				<Id>4</Id>
+			</Content>
+		</Trigger>
 	</Triggers>
 	<Actions>
 		<Action id="1">
@@ -578,6 +666,11 @@ DATE          VERSION    AUTHOR              COMMENTS
 		<Action id="3">
 			<Name>Manually Run Session 1030</Name>
 			<On id="3">group</On>
+			<Type>execute next</Type>
+		</Action>
+		<Action id="4">
+			<Name>Manually Run Session 1031</Name>
+			<On id="4">group</On>
 			<Type>execute next</Type>
 		</Action>
 	</Actions>

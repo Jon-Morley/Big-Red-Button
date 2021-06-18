@@ -38,6 +38,11 @@ public static class Parameter
 	public const int getinitialendpointinfo_debug_1082 = 1082;
 	/// <summary>PID: 1082 | Type: read</summary>
 	public const int getinitialendpointinfo_debug = 1082;
+	/// <summary>PID: 1091 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int sendpatch_output_1091 = 1091;
+	/// <summary>PID: 1091 | Type: read</summary>
+	public const int sendpatch_output = 1091;
 	public class Write
 	{
 		/// <summary>PID: 53 | Type: write</summary>
@@ -60,6 +65,11 @@ public static class Parameter
 		public const int button_poll_endpoints_1080 = 1080;
 		/// <summary>PID: 1080 | Type: write</summary>
 		public const int button_poll_endpoints = 1080;
+		/// <summary>PID: 1090 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int button_send_patch_1090 = 1090;
+		/// <summary>PID: 1090 | Type: write</summary>
+		public const int button_send_patch = 1090;
 	}
 	public class Caches
 	{
@@ -150,6 +160,8 @@ public class WriteParameters
 	public System.Object Api_endpoint {get { return Protocol.GetParameter(55); }set { Protocol.SetParameter(55, value); }}
 	/// <summary>PID: 1080  | Type: write | DISCREETS: Poll Endpoints = 0</summary>
 	public System.Object Button_poll_endpoints {get { return Protocol.GetParameter(1080); }set { Protocol.SetParameter(1080, value); }}
+	/// <summary>PID: 1090  | Type: write | DISCREETS: Send PATCH = 0</summary>
+	public System.Object Button_send_patch {get { return Protocol.GetParameter(1090); }set { Protocol.SetParameter(1090, value); }}
 	public SLProtocolExt Protocol;
 	public WriteParameters(SLProtocolExt protocol)
 	{
@@ -190,6 +202,10 @@ public interface SLProtocolExt : SLProtocol
 	object Getinitialendpointinfo_output { get; set; }
 	object Getinitialendpointinfo_debug_1082 { get; set; }
 	object Getinitialendpointinfo_debug { get; set; }
+	object Button_send_patch_1090 { get; set; }
+	object Button_send_patch { get; set; }
+	object Sendpatch_output_1091 { get; set; }
+	object Sendpatch_output { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
@@ -271,6 +287,15 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Getinitialendpointinfo_debug_1082 {get { return GetParameter(1082); }set { SetParameter(1082, value); }}
 	/// <summary>PID: 1082  | Type: read</summary>
 	public System.Object Getinitialendpointinfo_debug {get { return GetParameter(1082); }set { SetParameter(1082, value); }}
+	/// <summary>PID: 1090  | Type: write | DISCREETS: Send PATCH = 0</summary>
+	public System.Object Button_send_patch_1090 {get { return GetParameter(1090); }set { SetParameter(1090, value); }}
+	/// <summary>PID: 1090  | Type: write | DISCREETS: Send PATCH = 0</summary>
+	public System.Object Button_send_patch {get { return Write.Button_send_patch; }set { Write.Button_send_patch = value; }}
+	/// <summary>PID: 1091  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Sendpatch_output_1091 {get { return GetParameter(1091); }set { SetParameter(1091, value); }}
+	/// <summary>PID: 1091  | Type: read</summary>
+	public System.Object Sendpatch_output {get { return GetParameter(1091); }set { SetParameter(1091, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{

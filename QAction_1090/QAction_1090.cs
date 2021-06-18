@@ -6,7 +6,8 @@ using System.Text;
 using Skyline.DataMiner.Scripting;
 
 /// <summary>
-/// DataMiner QAction Class: Dummy.
+/// DataMiner QAction Class
+/// Send PATCH to the test cache
 /// </summary>
 public static class QAction
 {
@@ -18,7 +19,7 @@ public static class QAction
 	{
 		try
 		{
-			//ffffffffffffffffffffffffffffffffffffsssdsdsdssd
+			
 		}
 		catch (Exception ex)
 		{
