@@ -61,7 +61,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 	<DeviceOID />
 	<ElementType>Management System</ElementType>
 	<Type relativeTimers="true">http</Type>
-	<Display defaultPage="General" pageOrder="Authentication;General" wideColumnPages="General" />
+	<Display defaultPage="General" pageOrder="Configuration;General" wideColumnPages="Configuration;General" />
 	<SNMP includepages="true">auto</SNMP>
 	<Params>
 		<Param id="2">
@@ -91,7 +91,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
-						<Page>Authentication</Page>
+						<Page>Configuration</Page>
 						<Column>0</Column>
 						<Row>0</Row>
 					</Position>
@@ -117,7 +117,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
-						<Page>Authentication</Page>
+						<Page>Configuration</Page>
 						<Column>0</Column>
 						<Row>0</Row>
 					</Position>
@@ -149,7 +149,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
-						<Page>Authentication</Page>
+						<Page>Configuration</Page>
 						<Column>0</Column>
 						<Row>1</Row>
 					</Position>
@@ -175,7 +175,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
-						<Page>Authentication</Page>
+						<Page>Configuration</Page>
 						<Column>0</Column>
 						<Row>1</Row>
 					</Position>
@@ -207,7 +207,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
-						<Page>Authentication</Page>
+						<Page>Configuration</Page>
 						<Column>0</Column>
 						<Row>2</Row>
 					</Position>
@@ -242,7 +242,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
-						<Page>Authentication</Page>
+						<Page>Configuration</Page>
 						<Column>0</Column>
 						<Row>2</Row>
 					</Position>
@@ -254,6 +254,116 @@ DATE          VERSION    AUTHOR              COMMENTS
 			<Measurement>
 				<Type>string</Type>
 			</Measurement>
+		</Param>
+		<Param id="6" trending="false" save="true">
+			<Name>Server_Filter</Name>
+			<Description>Server Filter</Description>
+			<Information>
+				<Subtext>List of Servers to control</Subtext>
+				<Includes>
+					<Include>time</Include>
+					<Include>range</Include>
+					<Include>steps</Include>
+					<Include>units</Include>
+				</Includes>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Configuration</Page>
+						<Column>0</Column>
+						<Row>3</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Alarm>
+				<Monitored>false</Monitored>
+			</Alarm>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="56" trending="false" setter="true">
+			<Name>Server_Filter</Name>
+			<Description>Server Filter</Description>
+			<Information>
+				<Subtext>List of servers to control</Subtext>
+				<Includes>
+					<Include>time</Include>
+					<Include>range</Include>
+					<Include>steps</Include>
+					<Include>units</Include>
+				</Includes>
+			</Information>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Configuration</Page>
+						<Column>0</Column>
+						<Row>3</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Alarm>
+				<Monitored>false</Monitored>
+			</Alarm>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="7">
+			<Name>PATCH_uri</Name>
+			<Description>PATCH verb uri excluding the ip endpoint</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+		</Param>
+		<Param id="8">
+			<Name>PATCH_data</Name>
+			<Description>PATCH data pid</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+		</Param>
+		<Param id="9">
+			<Name>PATCH_Down_list</Name>
+			<Description>PATCH down list</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+		</Param>
+		<Param id="10">
+			<Name>PATCH_Up_list</Name>
+			<Description>PATCH up list</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
 		</Param>
 		<Param id="200" trending="false">
 			<Name>GetUpstreamsStatusCode</Name>
@@ -303,7 +413,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Measurement>
 		</Param>
 		<Param id="1001" trending="false">
-			<Name>EndpointsInstance</Name>
+			<Name>Caches_EndpointsInstance</Name>
 			<Description>Instance [IDX](Cache Table)</Description>
 			<Type>read</Type>
 			<Information>
@@ -322,7 +432,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Measurement>
 		</Param>
 		<Param id="1002" trending="false">
-			<Name>Cache_Zone_Name</Name>
+			<Name>Caches_Zone_Name</Name>
 			<Description>Cache Zone Name(Cache Table)</Description>
 			<Type>read</Type>
 			<Information>
@@ -341,7 +451,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Measurement>
 		</Param>
 		<Param id="1003" trending="false">
-			<Name>Cache_Peer_Id</Name>
+			<Name>Caches_Peer_Id</Name>
 			<Description>Cache Peer Id(Cache Table)</Description>
 			<Type>read</Type>
 			<Information>
@@ -360,7 +470,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Measurement>
 		</Param>
 		<Param id="1004" trending="false">
-			<Name>Cache_Peer_Server</Name>
+			<Name>Caches_Peer_Server</Name>
 			<Description>Cache Peer Server(Cache Table)</Description>
 			<Type>read</Type>
 			<Information>
@@ -379,7 +489,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Measurement>
 		</Param>
 		<Param id="1005" trending="false">
-			<Name>Cache_Peer_Name</Name>
+			<Name>Caches_Peer_Name</Name>
 			<Description>Cache Peer Name(Cache Table)</Description>
 			<Type>read</Type>
 			<Information>
@@ -398,7 +508,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Measurement>
 		</Param>
 		<Param id="1006" trending="false">
-			<Name>Cache_Peer_State</Name>
+			<Name>Caches_Peer_State</Name>
 			<Description>Cache Peer State(Cache Table)</Description>
 			<Type>read</Type>
 			<Information>
@@ -558,6 +668,167 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<Type>string</Type>
 			</Measurement>
 		</Param>
+		<Param id="1092">
+			<Name>Button_send_patchwithPID</Name>
+			<Type>write</Type>
+			<Information>
+				<Text>Send Patch</Text>
+				<Subtext>Button to run send patch QAction 1092</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>6</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Send PATCHwithURI</Display>
+						<Value>0</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="2000">
+			<Name>Configuration</Name>
+			<Description>Configuration_Failover</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0">
+				<ColumnOption idx="0" pid="2001" type="retrieved" options=";save"/>
+				<ColumnOption idx="1" pid="2002" type="retrieved" options=";save" />
+				<ColumnOption idx="2" pid="2003" type="retrieved" options=";save" />
+				<ColumnOption idx="3" pid="2004" type="retrieved" options=";save" />
+				<ColumnOption idx="4" pid="2005" type="retrieved" options="" />
+			</ArrayOptions>
+			<Information>
+				<Subtext>Config of Caches</Subtext>
+			</Information>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Configuration</Page>
+						<Column>0</Column>
+						<Row>4</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3-2005|4,width:100-100-100-100-100,sort:STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="2001" trending="false">
+			<Name>ConfigurationInstance</Name>
+			<Description>Instance [IDX] (Configuration_Failover)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the key used internally by DataMiner to identify the table entries.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="2002" trending="false">
+			<Name>Configuration_Zone</Name>
+			<Description>Zone Name (Configuration_Failover)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Configuration Zone Name</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="2003" trending="false">
+			<Name>Configuration_Peer</Name>
+			<Description>Peer Id (Configuration_Failover)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Configuration Peer Id</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="2004" trending="false">
+			<Name>Configuration_DataCenter</Name>
+			<Description>Data Center (Configuration_Failover)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Configuration Data Center</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="2005">
+			<Name>Configuration_DeleteRow</Name>
+			<Description>Delete Row (Configuration_Failover)</Description>
+			<Type>write</Type>
+			<Information>
+				<Subtext>Configuration Delete Row</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Delete_Row</Display>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
 	</Params>
 	<HTTP>
 		<Session id="1030" name="GetInitialEndPointInfo" loginMethod="credentials" userName="3" password="4" keepAlive="true" ignoreTimeout="true">
@@ -579,6 +850,16 @@ DATE          VERSION    AUTHOR              COMMENTS
 				</Response>
 			</Connection>
 		</Session>
+			<Session id="1032" name="SendPATCHwithPID" loginMethod="credentials" userName="3" password="4" keepAlive="true" ignoreTimeout="true">
+			<Connection id="1" name="SendPATCHwithPID">
+				<Request verb="PATCH" pid="7">
+					<Data pid="8"></Data>
+				</Request>
+				<Response statusCode="200">
+					<Content pid="1091" />
+				</Response>
+			</Connection>
+		</Session>
 	</HTTP>
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile">
@@ -593,9 +874,11 @@ DATE          VERSION    AUTHOR              COMMENTS
 		<QAction id="1081" name="GetInitialEndPointInfo_ProcessReturn" encoding="csharp" triggers="1081">
 		</QAction>
 		
-		<QAction id="1091" name="SendPatch_ProcessReturn" encoding="csharp" triggers="1091">
+		<QAction id="1091" name="SendPatch_ProcessReturn ALL PEER[0] DOWN PEER[1] UP" encoding="csharp" triggers="1091">
 		</QAction>
 		
+		<QAction id="1092" name="Build PATCH pids ALL PEER[0] DOWN PEER[1] UP" encoding="csharp" triggers="1092">
+		</QAction>
 	</QActions>
 	<Groups>
 		<Group id="2">
@@ -620,6 +903,14 @@ DATE          VERSION    AUTHOR              COMMENTS
 			<Type>poll</Type>
 			<Content>
 				<Session>1031</Session>
+			</Content>
+		</Group>
+			<Group id="5">
+			<Name>HTTP_PATCHwithPID</Name>
+			<Description>HTTP PATCH with pid data and uri</Description>
+			<Type>poll</Type>
+			<Content>
+				<Session>1032</Session>
 			</Content>
 		</Group>
 	</Groups>
@@ -651,6 +942,15 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<Id>4</Id>
 			</Content>
 		</Trigger>
+			<Trigger id="4">
+			<Name>Manually Run Session 1032</Name>
+			<On id="7">parameter</On>
+			<Time>change</Time>
+			<Type>action</Type>
+			<Content>
+				<Id>5</Id>
+			</Content>
+		</Trigger>
 	</Triggers>
 	<Actions>
 		<Action id="1">
@@ -671,6 +971,11 @@ DATE          VERSION    AUTHOR              COMMENTS
 		<Action id="4">
 			<Name>Manually Run Session 1031</Name>
 			<On id="4">group</On>
+			<Type>execute next</Type>
+		</Action>
+			<Action id="5">
+			<Name>Manually Run Session 1032</Name>
+			<On id="5">group</On>
 			<Type>execute next</Type>
 		</Action>
 	</Actions>

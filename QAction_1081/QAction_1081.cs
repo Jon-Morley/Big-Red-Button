@@ -26,59 +26,71 @@ public static class QAction
         {
 			List<QActionTableRow> tableRows = new List<QActionTableRow>();
 
-			/*
-			CachesQActionRow newRow = new CachesQActionRow
-			{
-				Endpointsinstance_1001 = DateTime.Now.ToLongTimeString(),
-				Cache_name_1002 = "test " + DateTime.Now.ToString(),
-				Endpoints_ipv4_1003 = "ip address",
-				Endpoints_nginx_api_1004 = "API string",
-				Endpoints_http_response_1005 = "no response"
-			};
+			string serverFilterString = (string)protocol.GetParameter(Parameter.server_filter_6);
+			List<string> serverFilterList = serverFilterString.Split(':').ToList();
 
-			tableRows.Add(newRow);
-			*/
+			//Return if the filter is blank
+			if (!serverFilterList.Any())
+				return;
 
 			//json processing to EndpointsQActionRow objects
 			string jsonResponse = (string)protocol.GetParameter(Parameter.getinitialendpointinfo_output_1081);
 
-			//protocol.SetParameter(Parameter.getinitialendpointinfo_debug_1082, "QAction 1081 ran at " + DateTime.Now.ToString());
-
-
-			JObject obj = JObject.Parse(jsonResponse);
-
-			var h = obj.Value<JObject>("GosEleDeltaLive001").Value<JArray>("peers")[0].SelectToken("server").ToString();
-			var k = obj.SelectTokens("GosEleDeltaLive001").ToList<JToken>().Count.ToString();
-			//k = obj.Root.Children().ToList<JToken>().Count.ToString();
-
-			List<JToken> toks = obj.Root.Children().ToList<JToken>();
-
+			//var h = obj.Value<JObject>("GosEleDeltaLive001").Value<JArray>("peers")[0].SelectToken("server").ToString(); //test
+			//var k = obj.SelectTokens("GosEleDeltaLive001").ToList<JToken>().Count.ToString(); //test
 
 			string output = "";
-			foreach(JToken token in toks)
+			var objJObj = JObject.Parse(jsonResponse);
+
+			foreach (JProperty prop in objJObj.Properties())
 			{
-				JObject prop = (JObject)token;
-				output += prop.Root.Value<string>("zone");
+				JObject item = (JObject)prop.Value;
+				var zone = (string)item["zone"];
+				var keepalive = (int)item["keepalive"];
+				output += "  | Zone:" + zone + "|" + "Keepalive:" + keepalive;
 
-				//output += token.ToString();
+				var inners = item.Value<JArray>("peers");
 
-				//output += token.Value<string>("zone");
-				//JObject newObj = (JObject)token;
-				//output += newObj.SelectToken("zone").Value<string>();
+				//output += "|Inners:" + inners.Count.ToString();
+				//output += inners[0].SelectToken("server").ToString();
+				
+				foreach(JObject jArr in inners)
+				{
+					string id = jArr.SelectToken("id").ToString();
+					string serverName = jArr.SelectToken("server").ToString();
+					string name = jArr.SelectToken("name").ToString();
+					string state = jArr.SelectToken("state").ToString();
 
-				/*
-				JToken outer = JToken.Parse(token.ToString());
-				JObject inner = outer.Root.Value<JObject>();
+					output += "|Server:" + serverName + "|ID:" + id + "|State:" + state;
 
-				List<string> keys = inner.Properties().Select(p => p.Name).ToList();
-				string bla = (string)inner.Properties().First().Value;
-				output += bla;
-				*/
+					//Create table objects if the filter list contains the same name
+					if (serverFilterList.Contains(zone))
+					{
+						CachesQActionRow newRow = new CachesQActionRow
+						{
+							Caches_endpointsinstance_1001 = zone + id + serverName,
+							Caches_zone_name_1002 = zone,
+							Caches_peer_id_1003 = id,
+							Caches_peer_server_1004 = serverName,
+							Caches_peer_name_1005 = name,
+							Caches_peer_state_1006 = state
+						};
+
+						tableRows.Add(newRow);
+					}
+
+
+					
+
+
+				}
+
+
 			}
+
 
 			try
 			{
-				string objw = obj.SelectToken("GosEleDeltaLive001").ToString();
 				protocol.SetParameter(Parameter.getinitialendpointinfo_debug_1082, "QAction 1081 ran and  " + output + " | " + DateTime.Now.ToString());
 			}
 			catch (Exception e)
@@ -86,35 +98,6 @@ public static class QAction
 				protocol.SetParameter(Parameter.getinitialendpointinfo_debug_1082, "QAction 1081 ran and found error " + e + " | " + DateTime.Now.ToString());
 			}
 
-
-			string debug = (string)obj.SelectToken("zone");
-			//protocol.SetParameter(Parameter.getinitialendpointinfo_debug_1082, debug);
-
-			for (int i=0; i< obj.Count; i++)
-			{		
-				string zoneName = (string)obj[i];
-
-				JArray jArrayPeersinZone = (JArray)obj[i]["peers"];
-
-				for(int j=0; j< jArrayPeersinZone.Count; j++)
-				{
-
-
-					CachesQActionRow newRow = new CachesQActionRow
-					{
-						Endpointsinstance_1001 = DateTime.Now.ToLongTimeString() + "_" + zoneName + "_peer_" + j.ToString(),
-						Cache_zone_name_1002 = zoneName,
-						Cache_peer_id_1003 = jArrayPeersinZone[j]["id"],
-						Cache_peer_server_1004 = jArrayPeersinZone[j]["server"],
-						Cache_peer_name_1005 = jArrayPeersinZone[j]["server"],
-						Cache_peer_state_1006 = jArrayPeersinZone[j]["state"]
-					};
-
-					tableRows.Add(newRow);
-
-				}
-
-			}
 
 			//fill table
 			protocol.caches.FillArray(tableRows);
