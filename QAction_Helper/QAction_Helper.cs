@@ -48,6 +48,21 @@ public static class Parameter
 	public const int patch_up_list_10 = 10;
 	/// <summary>PID: 10 | Type: read</summary>
 	public const int patch_up_list = 10;
+	/// <summary>PID: 11 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int patch_failover_status_11 = 11;
+	/// <summary>PID: 11 | Type: read</summary>
+	public const int patch_failover_status = 11;
+	/// <summary>PID: 12 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int patch_commandlist_12 = 12;
+	/// <summary>PID: 12 | Type: read</summary>
+	public const int patch_commandlist = 12;
+	/// <summary>PID: 13 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int datacenter_id_13 = 13;
+	/// <summary>PID: 13 | Type: read</summary>
+	public const int datacenter_id = 13;
 	/// <summary>PID: 200 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public const int getupstreamsstatuscode_200 = 200;
@@ -90,6 +105,11 @@ public static class Parameter
 		public const int server_filter_56 = 56;
 		/// <summary>PID: 56 | Type: write</summary>
 		public const int server_filter = 56;
+		/// <summary>PID: 63 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int datacenter_id_63 = 63;
+		/// <summary>PID: 63 | Type: write</summary>
+		public const int datacenter_id = 63;
 		/// <summary>PID: 1080 | Type: write</summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public const int button_poll_endpoints_1080 = 1080;
@@ -102,9 +122,14 @@ public static class Parameter
 		public const int button_send_patch = 1090;
 		/// <summary>PID: 1092 | Type: write</summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		public const int button_send_patchwithpid_1092 = 1092;
+		public const int button_send_patchwithpiddown_1092 = 1092;
 		/// <summary>PID: 1092 | Type: write</summary>
-		public const int button_send_patchwithpid = 1092;
+		public const int button_send_patchwithpiddown = 1092;
+		/// <summary>PID: 1093 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int button_send_patchwithpidup_1093 = 1093;
+		/// <summary>PID: 1093 | Type: write</summary>
+		public const int button_send_patchwithpidup = 1093;
 	}
 	public class Caches
 	{
@@ -184,69 +209,6 @@ public static class Parameter
 			public const int caches_peer_state = 5;
 		}
 	}
-	public class Configuration
-	{
-		/// <summary>PID: 2000</summary>
-		public const int tablePid = 2000;
-		/// <summary>IDX: 0</summary>
-		public const int indexColumn = 0;
-		/// <summary>PID: 2001</summary>
-		public const int indexColumnPid = 2001;
-		public class Pid
-		{
-			/// <summary>PID: 2001 | Type: read</summary>
-			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int configurationinstance_2001 = 2001;
-			/// <summary>PID: 2001 | Type: read</summary>
-			public const int configurationinstance = 2001;
-			/// <summary>PID: 2002 | Type: read</summary>
-			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int configuration_zone_2002 = 2002;
-			/// <summary>PID: 2002 | Type: read</summary>
-			public const int configuration_zone = 2002;
-			/// <summary>PID: 2003 | Type: read</summary>
-			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int configuration_peer_2003 = 2003;
-			/// <summary>PID: 2003 | Type: read</summary>
-			public const int configuration_peer = 2003;
-			/// <summary>PID: 2004 | Type: read</summary>
-			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int configuration_datacenter_2004 = 2004;
-			/// <summary>PID: 2004 | Type: read</summary>
-			public const int configuration_datacenter = 2004;
-			public class Write
-			{
-				/// <summary>PID: 2005 | Type: write</summary>
-				[EditorBrowsable(EditorBrowsableState.Never)]
-				public const int configuration_deleterow_2005 = 2005;
-				/// <summary>PID: 2005 | Type: write</summary>
-				public const int configuration_deleterow = 2005;
-			}
-		}
-		public class Idx
-		{
-			/// <summary>IDX: 0 | Type: read</summary>
-			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int configurationinstance_2001 = 0;
-			/// <summary>IDX: 0 | Type: read</summary>
-			public const int configurationinstance = 0;
-			/// <summary>IDX: 1 | Type: read</summary>
-			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int configuration_zone_2002 = 1;
-			/// <summary>IDX: 1 | Type: read</summary>
-			public const int configuration_zone = 1;
-			/// <summary>IDX: 2 | Type: read</summary>
-			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int configuration_peer_2003 = 2;
-			/// <summary>IDX: 2 | Type: read</summary>
-			public const int configuration_peer = 2;
-			/// <summary>IDX: 3 | Type: read</summary>
-			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int configuration_datacenter_2004 = 3;
-			/// <summary>IDX: 3 | Type: read</summary>
-			public const int configuration_datacenter = 3;
-		}
-	}
 }
 public class WriteParameters
 {
@@ -258,14 +220,16 @@ public class WriteParameters
 	public System.Object Api_endpoint {get { return Protocol.GetParameter(55); }set { Protocol.SetParameter(55, value); }}
 	/// <summary>PID: 56  | Type: write</summary>
 	public System.Object Server_filter {get { return Protocol.GetParameter(56); }set { Protocol.SetParameter(56, value); }}
+	/// <summary>PID: 63  | Type: write</summary>
+	public System.Object Datacenter_id {get { return Protocol.GetParameter(63); }set { Protocol.SetParameter(63, value); }}
 	/// <summary>PID: 1080  | Type: write | DISCREETS: Poll Endpoints = 0</summary>
 	public System.Object Button_poll_endpoints {get { return Protocol.GetParameter(1080); }set { Protocol.SetParameter(1080, value); }}
 	/// <summary>PID: 1090  | Type: write | DISCREETS: Send PATCH = 0</summary>
 	public System.Object Button_send_patch {get { return Protocol.GetParameter(1090); }set { Protocol.SetParameter(1090, value); }}
-	/// <summary>PID: 1092  | Type: write | DISCREETS: Send PATCHwithURI = 0</summary>
-	public System.Object Button_send_patchwithpid {get { return Protocol.GetParameter(1092); }set { Protocol.SetParameter(1092, value); }}
-	/// <summary>PID: 2005  | Type: write | DISCREETS: Delete_Row = 1</summary>
-	public System.Object Configuration_deleterow {get { return Protocol.GetParameter(2005); }set { Protocol.SetParameter(2005, value); }}
+	/// <summary>PID: 1092  | Type: write | DISCREETS: Send PATCH DOWN = 0</summary>
+	public System.Object Button_send_patchwithpiddown {get { return Protocol.GetParameter(1092); }set { Protocol.SetParameter(1092, value); }}
+	/// <summary>PID: 1093  | Type: write | DISCREETS: Send PATCH UP = 0</summary>
+	public System.Object Button_send_patchwithpidup {get { return Protocol.GetParameter(1093); }set { Protocol.SetParameter(1093, value); }}
 	public SLProtocolExt Protocol;
 	public WriteParameters(SLProtocolExt protocol)
 	{
@@ -276,8 +240,6 @@ public interface SLProtocolExt : SLProtocol
 {
 	/// <summary>PID: 1000</summary>
 	CachesQActionTable caches { get; set; }
-	/// <summary>PID: 2000</summary>
-	ConfigurationQActionTable configuration { get; set; }
 	object Afterstartup_dummy { get; set; }
 	object Username_3 { get; set; }
 	object Username { get; set; }
@@ -295,10 +257,17 @@ public interface SLProtocolExt : SLProtocol
 	object Patch_down_list { get; set; }
 	object Patch_up_list_10 { get; set; }
 	object Patch_up_list { get; set; }
+	object Patch_failover_status_11 { get; set; }
+	object Patch_failover_status { get; set; }
+	object Patch_commandlist_12 { get; set; }
+	object Patch_commandlist { get; set; }
+	object Datacenter_id_13 { get; set; }
+	object Datacenter_id { get; set; }
 	object Username_53 { get; set; }
 	object Password_54 { get; set; }
 	object Api_endpoint_55 { get; set; }
 	object Server_filter_56 { get; set; }
+	object Datacenter_id_63 { get; set; }
 	object Getupstreamsstatuscode_200 { get; set; }
 	object Getupstreamsstatuscode { get; set; }
 	object Caches_endpointsinstance_1001 { get; set; }
@@ -323,26 +292,16 @@ public interface SLProtocolExt : SLProtocol
 	object Button_send_patch { get; set; }
 	object Sendpatch_output_1091 { get; set; }
 	object Sendpatch_output { get; set; }
-	object Button_send_patchwithpid_1092 { get; set; }
-	object Button_send_patchwithpid { get; set; }
-	object Configurationinstance_2001 { get; set; }
-	object Configurationinstance { get; set; }
-	object Configuration_zone_2002 { get; set; }
-	object Configuration_zone { get; set; }
-	object Configuration_peer_2003 { get; set; }
-	object Configuration_peer { get; set; }
-	object Configuration_datacenter_2004 { get; set; }
-	object Configuration_datacenter { get; set; }
-	object Configuration_deleterow_2005 { get; set; }
-	object Configuration_deleterow { get; set; }
+	object Button_send_patchwithpiddown_1092 { get; set; }
+	object Button_send_patchwithpiddown { get; set; }
+	object Button_send_patchwithpidup_1093 { get; set; }
+	object Button_send_patchwithpidup { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 {
 	/// <summary>PID: 1000</summary>
 	public CachesQActionTable caches { get; set; }
-	/// <summary>PID: 2000</summary>
-	public ConfigurationQActionTable configuration { get; set; }
 	/// <summary>PID: 2  | Type: dummy</summary>
 	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
 	/// <summary>PID: 3  | Type: read</summary>
@@ -385,6 +344,21 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Patch_up_list_10 {get { return GetParameter(10); }set { SetParameter(10, value); }}
 	/// <summary>PID: 10  | Type: read</summary>
 	public System.Object Patch_up_list {get { return GetParameter(10); }set { SetParameter(10, value); }}
+	/// <summary>PID: 11  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Patch_failover_status_11 {get { return GetParameter(11); }set { SetParameter(11, value); }}
+	/// <summary>PID: 11  | Type: read</summary>
+	public System.Object Patch_failover_status {get { return GetParameter(11); }set { SetParameter(11, value); }}
+	/// <summary>PID: 12  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Patch_commandlist_12 {get { return GetParameter(12); }set { SetParameter(12, value); }}
+	/// <summary>PID: 12  | Type: read</summary>
+	public System.Object Patch_commandlist {get { return GetParameter(12); }set { SetParameter(12, value); }}
+	/// <summary>PID: 13  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Datacenter_id_13 {get { return GetParameter(13); }set { SetParameter(13, value); }}
+	/// <summary>PID: 13  | Type: read</summary>
+	public System.Object Datacenter_id {get { return GetParameter(13); }set { SetParameter(13, value); }}
 	/// <summary>PID: 53  | Type: write</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Username_53 {get { return GetParameter(53); }set { SetParameter(53, value); }}
@@ -397,6 +371,9 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	/// <summary>PID: 56  | Type: write</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Server_filter_56 {get { return GetParameter(56); }set { SetParameter(56, value); }}
+	/// <summary>PID: 63  | Type: write</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Datacenter_id_63 {get { return GetParameter(63); }set { SetParameter(63, value); }}
 	/// <summary>PID: 200  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Getupstreamsstatuscode_200 {get { return GetParameter(200); }set { SetParameter(200, value); }}
@@ -455,39 +432,18 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Sendpatch_output_1091 {get { return GetParameter(1091); }set { SetParameter(1091, value); }}
 	/// <summary>PID: 1091  | Type: read</summary>
 	public System.Object Sendpatch_output {get { return GetParameter(1091); }set { SetParameter(1091, value); }}
-	/// <summary>PID: 1092  | Type: write | DISCREETS: Send PATCHwithURI = 0</summary>
-	public System.Object Button_send_patchwithpid_1092 {get { return GetParameter(1092); }set { SetParameter(1092, value); }}
-	/// <summary>PID: 1092  | Type: write | DISCREETS: Send PATCHwithURI = 0</summary>
-	public System.Object Button_send_patchwithpid {get { return Write.Button_send_patchwithpid; }set { Write.Button_send_patchwithpid = value; }}
-	/// <summary>PID: 2001  | Type: read</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Configurationinstance_2001 {get { return GetParameter(2001); }set { SetParameter(2001, value); }}
-	/// <summary>PID: 2001  | Type: read</summary>
-	public System.Object Configurationinstance {get { return GetParameter(2001); }set { SetParameter(2001, value); }}
-	/// <summary>PID: 2002  | Type: read</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Configuration_zone_2002 {get { return GetParameter(2002); }set { SetParameter(2002, value); }}
-	/// <summary>PID: 2002  | Type: read</summary>
-	public System.Object Configuration_zone {get { return GetParameter(2002); }set { SetParameter(2002, value); }}
-	/// <summary>PID: 2003  | Type: read</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Configuration_peer_2003 {get { return GetParameter(2003); }set { SetParameter(2003, value); }}
-	/// <summary>PID: 2003  | Type: read</summary>
-	public System.Object Configuration_peer {get { return GetParameter(2003); }set { SetParameter(2003, value); }}
-	/// <summary>PID: 2004  | Type: read</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Configuration_datacenter_2004 {get { return GetParameter(2004); }set { SetParameter(2004, value); }}
-	/// <summary>PID: 2004  | Type: read</summary>
-	public System.Object Configuration_datacenter {get { return GetParameter(2004); }set { SetParameter(2004, value); }}
-	/// <summary>PID: 2005  | Type: write | DISCREETS: Delete_Row = 1</summary>
-	public System.Object Configuration_deleterow_2005 {get { return GetParameter(2005); }set { SetParameter(2005, value); }}
-	/// <summary>PID: 2005  | Type: write | DISCREETS: Delete_Row = 1</summary>
-	public System.Object Configuration_deleterow {get { return Write.Configuration_deleterow; }set { Write.Configuration_deleterow = value; }}
+	/// <summary>PID: 1092  | Type: write | DISCREETS: Send PATCH DOWN = 0</summary>
+	public System.Object Button_send_patchwithpiddown_1092 {get { return GetParameter(1092); }set { SetParameter(1092, value); }}
+	/// <summary>PID: 1092  | Type: write | DISCREETS: Send PATCH DOWN = 0</summary>
+	public System.Object Button_send_patchwithpiddown {get { return Write.Button_send_patchwithpiddown; }set { Write.Button_send_patchwithpiddown = value; }}
+	/// <summary>PID: 1093  | Type: write | DISCREETS: Send PATCH UP = 0</summary>
+	public System.Object Button_send_patchwithpidup_1093 {get { return GetParameter(1093); }set { SetParameter(1093, value); }}
+	/// <summary>PID: 1093  | Type: write | DISCREETS: Send PATCH UP = 0</summary>
+	public System.Object Button_send_patchwithpidup {get { return Write.Button_send_patchwithpidup; }set { Write.Button_send_patchwithpidup = value; }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{
 		caches = new CachesQActionTable(this, 1000, "caches");
-		configuration = new ConfigurationQActionTable(this, 2000, "configuration");
 		Write = new WriteParameters(this);
 	}
 }
@@ -497,13 +453,6 @@ public class CachesQActionTable : QActionTable, IEnumerable<CachesQActionRow>
 	public CachesQActionTable(SLProtocol protocol, int tableId, string tableName) : base(protocol, tableId, tableName) { }
 	IEnumerator IEnumerable.GetEnumerator() { return (IEnumerator) GetEnumerator(); }
 	public IEnumerator<CachesQActionRow> GetEnumerator() { return new QActionTableEnumerator<CachesQActionRow>(this); }
-}
-/// <summary>IDX: 0</summary>
-public class ConfigurationQActionTable : QActionTable, IEnumerable<ConfigurationQActionRow>
-{
-	public ConfigurationQActionTable(SLProtocol protocol, int tableId, string tableName) : base(protocol, tableId, tableName) { }
-	IEnumerator IEnumerable.GetEnumerator() { return (IEnumerator) GetEnumerator(); }
-	public IEnumerator<ConfigurationQActionRow> GetEnumerator() { return new QActionTableEnumerator<ConfigurationQActionRow>(this); }
 }
 /// <summary>IDX: 0</summary>
 public class CachesQActionRow : QActionTableRow
@@ -542,37 +491,5 @@ public class CachesQActionRow : QActionTableRow
 	public CachesQActionRow(System.Object[] oRow) : base(0, 6, oRow) { }
 	public static implicit operator CachesQActionRow(System.Object[] source) { return new CachesQActionRow(source); }
 	public static implicit operator System.Object[](CachesQActionRow source) { return source.ToObjectArray(); }
-}
-/// <summary>IDX: 0</summary>
-public class ConfigurationQActionRow : QActionTableRow
-{
-	/// <summary>PID: 2001 | Type: read</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Configurationinstance_2001 { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
-	/// <summary>PID: 2001 | Type: read</summary>
-	public System.Object Configurationinstance { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
-	/// <summary>PID: 2002 | Type: read</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Configuration_zone_2002 { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
-	/// <summary>PID: 2002 | Type: read</summary>
-	public System.Object Configuration_zone { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
-	/// <summary>PID: 2003 | Type: read</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Configuration_peer_2003 { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
-	/// <summary>PID: 2003 | Type: read</summary>
-	public System.Object Configuration_peer { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
-	/// <summary>PID: 2004 | Type: read</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Configuration_datacenter_2004 { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
-	/// <summary>PID: 2004 | Type: read</summary>
-	public System.Object Configuration_datacenter { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
-	/// <summary>PID: 2005 | Type: write</summary>
-	public System.Object Configuration_deleterow_2005 { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
-	/// <summary>PID: 2005 | Type: write</summary>
-	public System.Object Configuration_deleterow { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
-	public ConfigurationQActionRow() : base(0, 5) { }
-	public ConfigurationQActionRow(System.Object[] oRow) : base(0, 5, oRow) { }
-	public static implicit operator ConfigurationQActionRow(System.Object[] source) { return new ConfigurationQActionRow(source); }
-	public static implicit operator System.Object[](ConfigurationQActionRow source) { return source.ToObjectArray(); }
 }
 }

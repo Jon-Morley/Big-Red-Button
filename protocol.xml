@@ -365,6 +365,128 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<LengthType>next param</LengthType>
 			</Interprete>
 		</Param>
+		<Param id="11" trending="false">
+			<Name>PATCH_Failover_Status</Name>
+			<Description>PATCH Failover Status</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>PATCH Failover Status</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>8</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="12" trending="false">
+			<Name>PATCH_CommandList</Name>
+			<Description>PATCH CommandList</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>PATCH CommandList</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>9</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="13" trending="false" save="true">
+			<Name>DataCenter_ID</Name>
+			<Description>DataCenter ID for Visio</Description>
+			<Information>
+				<Subtext>DataCenter ID for Visio</Subtext>
+				<Includes>
+					<Include>time</Include>
+					<Include>range</Include>
+					<Include>steps</Include>
+					<Include>units</Include>
+				</Includes>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Configuration</Page>
+						<Column>0</Column>
+						<Row>4</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Alarm>
+				<Monitored>false</Monitored>
+			</Alarm>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="63" trending="false" setter="true">
+			<Name>DataCenter_ID</Name>
+			<Description>DataCenter ID for Visio</Description>
+			<Information>
+				<Subtext>DataCenter ID for Visio</Subtext>
+				<Includes>
+					<Include>time</Include>
+					<Include>range</Include>
+					<Include>steps</Include>
+					<Include>units</Include>
+				</Includes>
+			</Information>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Configuration</Page>
+						<Column>0</Column>
+						<Row>4</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Alarm>
+				<Monitored>false</Monitored>
+			</Alarm>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
 		<Param id="200" trending="false">
 			<Name>GetUpstreamsStatusCode</Name>
 			<Description>GetUpstreamsStatusCode</Description>
@@ -669,11 +791,43 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Measurement>
 		</Param>
 		<Param id="1092">
-			<Name>Button_send_patchwithPID</Name>
+			<Name>Button_send_patchwithPIDDOWN</Name>
 			<Type>write</Type>
 			<Information>
 				<Text>Send Patch</Text>
 				<Subtext>Button to run send patch QAction 1092</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>7</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Send PATCH DOWN</Display>
+						<Value>0</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="1093">
+			<Name>Button_send_patchwithPIDUP</Name>
+			<Type>write</Type>
+			<Information>
+				<Text>Send Patch</Text>
+				<Subtext>Button to run send patch QAction 1093</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>numeric text</RawType>
@@ -694,137 +848,8 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<Type width="110">button</Type>
 				<Discreets>
 					<Discreet>
-						<Display>Send PATCHwithURI</Display>
+						<Display>Send PATCH UP</Display>
 						<Value>0</Value>
-					</Discreet>
-				</Discreets>
-			</Measurement>
-		</Param>
-		<Param id="2000">
-			<Name>Configuration</Name>
-			<Description>Configuration_Failover</Description>
-			<Type>array</Type>
-			<ArrayOptions index="0">
-				<ColumnOption idx="0" pid="2001" type="retrieved" options=";save"/>
-				<ColumnOption idx="1" pid="2002" type="retrieved" options=";save" />
-				<ColumnOption idx="2" pid="2003" type="retrieved" options=";save" />
-				<ColumnOption idx="3" pid="2004" type="retrieved" options=";save" />
-				<ColumnOption idx="4" pid="2005" type="retrieved" options="" />
-			</ArrayOptions>
-			<Information>
-				<Subtext>Config of Caches</Subtext>
-			</Information>
-			<Display>
-				<RTDisplay>true</RTDisplay>
-				<Positions>
-					<Position>
-						<Page>Configuration</Page>
-						<Column>0</Column>
-						<Row>4</Row>
-					</Position>
-				</Positions>
-			</Display>
-			<Measurement>
-				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3-2005|4,width:100-100-100-100-100,sort:STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
-			</Measurement>
-		</Param>
-		<Param id="2001" trending="false">
-			<Name>ConfigurationInstance</Name>
-			<Description>Instance [IDX] (Configuration_Failover)</Description>
-			<Type>read</Type>
-			<Information>
-				<Subtext>This is the key used internally by DataMiner to identify the table entries.</Subtext>
-			</Information>
-			<Interprete>
-				<RawType>other</RawType>
-				<Type>string</Type>
-				<LengthType>next param</LengthType>
-			</Interprete>
-			<Display>
-				<RTDisplay>true</RTDisplay>
-			</Display>
-			<Measurement>
-				<Type>string</Type>
-			</Measurement>
-		</Param>
-		<Param id="2002" trending="false">
-			<Name>Configuration_Zone</Name>
-			<Description>Zone Name (Configuration_Failover)</Description>
-			<Type>read</Type>
-			<Information>
-				<Subtext>Configuration Zone Name</Subtext>
-			</Information>
-			<Interprete>
-				<RawType>other</RawType>
-				<Type>string</Type>
-				<LengthType>next param</LengthType>
-			</Interprete>
-			<Display>
-				<RTDisplay>true</RTDisplay>
-			</Display>
-			<Measurement>
-				<Type>string</Type>
-			</Measurement>
-		</Param>
-		<Param id="2003" trending="false">
-			<Name>Configuration_Peer</Name>
-			<Description>Peer Id (Configuration_Failover)</Description>
-			<Type>read</Type>
-			<Information>
-				<Subtext>Configuration Peer Id</Subtext>
-			</Information>
-			<Interprete>
-				<RawType>other</RawType>
-				<Type>string</Type>
-				<LengthType>next param</LengthType>
-			</Interprete>
-			<Display>
-				<RTDisplay>true</RTDisplay>
-			</Display>
-			<Measurement>
-				<Type>string</Type>
-			</Measurement>
-		</Param>
-		<Param id="2004" trending="false">
-			<Name>Configuration_DataCenter</Name>
-			<Description>Data Center (Configuration_Failover)</Description>
-			<Type>read</Type>
-			<Information>
-				<Subtext>Configuration Data Center</Subtext>
-			</Information>
-			<Interprete>
-				<RawType>other</RawType>
-				<Type>string</Type>
-				<LengthType>next param</LengthType>
-			</Interprete>
-			<Display>
-				<RTDisplay>true</RTDisplay>
-			</Display>
-			<Measurement>
-				<Type>string</Type>
-			</Measurement>
-		</Param>
-		<Param id="2005">
-			<Name>Configuration_DeleteRow</Name>
-			<Description>Delete Row (Configuration_Failover)</Description>
-			<Type>write</Type>
-			<Information>
-				<Subtext>Configuration Delete Row</Subtext>
-			</Information>
-			<Interprete>
-				<RawType>numeric text</RawType>
-				<Type>double</Type>
-				<LengthType>next param</LengthType>
-			</Interprete>
-			<Display>
-				<RTDisplay>true</RTDisplay>
-			</Display>
-			<Measurement>
-				<Type width="110">button</Type>
-				<Discreets>
-					<Discreet>
-						<Display>Delete_Row</Display>
-						<Value>1</Value>
 					</Discreet>
 				</Discreets>
 			</Measurement>
@@ -879,6 +904,10 @@ DATE          VERSION    AUTHOR              COMMENTS
 		
 		<QAction id="1092" name="Build PATCH pids ALL PEER[0] DOWN PEER[1] UP" encoding="csharp" triggers="1092">
 		</QAction>
+		
+		<QAction id="1093" name="Build PATCH pids ALL PEER[1] DOWN PEER[0] UP" encoding="csharp" triggers="1093">
+		</QAction>
+		
 	</QActions>
 	<Groups>
 		<Group id="2">
@@ -950,7 +979,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 			<Content>
 				<Id>5</Id>
 			</Content>
-		</Trigger>
+		</Trigger>	
 	</Triggers>
 	<Actions>
 		<Action id="1">

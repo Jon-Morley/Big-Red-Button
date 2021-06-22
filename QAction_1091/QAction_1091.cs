@@ -34,17 +34,55 @@ public static void Run(SLProtocol protocol)
 			string allPeersDown = (string)protocol.GetParameter(Parameter.patch_down_list_9);
 			string allPeersUp = (string)protocol.GetParameter(Parameter.patch_up_list_10);
 
+			string peerCommandStr = (string)protocol.GetParameter(Parameter.patch_commandlist_12);
+
+			if(string.IsNullOrEmpty(peerCommandStr))
+			{
+				protocol.SetParameter(Parameter.getinitialendpointinfo_debug_1082, "QAction 1091 finished looping at " + DateTime.Now.ToString());
+				protocol.SetParameter(Parameter.patch_failover_status_11, "Failover Complete");
+				return;
+			}
+
+
+			List<string> peerCommands = peerCommandStr.Split(';').ToList();
+
+			string firstCommand = peerCommands[0];
+			string[] commArr = firstCommand.Split('|');
+
+			peerCommands.RemoveAt(0);
+
+
+			protocol.SetParameter(Parameter.patch_commandlist_12, string.Join(";", peerCommands));
+
+			if (commArr[2].Equals("DOWN"))
+				protocol.SetParameter(Parameter.patch_data_8, "{\"down\": true }");
+			else
+				protocol.SetParameter(Parameter.patch_data_8, "{\"down\": false }");
+
+			//Update param7 to start the session off
+			protocol.SetParameter(Parameter.patch_uri_7, "api/6/http/upstreams/" + commArr[0] + "/servers/" + commArr[1]);
+
+			//protocol.SetParameter(Parameter.patch_failover_status_11, "Failover Started");
+
+
+
+			/*
 			List<string> allPeersArr = new List<string>();
+
+
+			List<string> peerCommandsList = peerCommand.Split(';').ToList();
+
 
 			if (string.IsNullOrEmpty(allPeersDown) && string.IsNullOrEmpty(allPeersUp))
 			{
 				protocol.SetParameter(Parameter.getinitialendpointinfo_debug_1082, "QAction 1091 finished looping at " + DateTime.Now.ToString());
+				protocol.SetParameter(Parameter.patch_failover_status_11, "failover complete");
 				return;
 			}
 
 			if (!string.IsNullOrEmpty(allPeersDown))
 			{
-
+				protocol.SetParameter(Parameter.patch_failover_status_11, "failing over");
 			allPeersArr = allPeersDown.Split(';').ToList();
 
 				//write params to trigger the Session off
@@ -87,6 +125,7 @@ public static void Run(SLProtocol protocol)
 				protocol.SetParameter(Parameter.getinitialendpointinfo_debug_1082, "QAction 1091 Setting peers list " + string.Join(";", allPeersArr));
 
 			}
+			*/
 
 
 

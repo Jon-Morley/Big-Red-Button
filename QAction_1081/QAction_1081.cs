@@ -79,24 +79,20 @@ public static class QAction
 						tableRows.Add(newRow);
 					}
 
-
-					
-
-
 				}
 
-
 			}
 
-
-			try
+			//check the status and update status pid for the Visio
+			string status = "UP";
+			foreach(CachesQActionRow obj in tableRows)
 			{
-				protocol.SetParameter(Parameter.getinitialendpointinfo_debug_1082, "QAction 1081 ran and  " + output + " | " + DateTime.Now.ToString());
+				if (((string)obj.Caches_peer_id_1003).Equals("0") &&  ((string)obj.Caches_peer_state_1006).Equals("down"))
+					status = "DOWN";
 			}
-			catch (Exception e)
-			{
-				protocol.SetParameter(Parameter.getinitialendpointinfo_debug_1082, "QAction 1081 ran and found error " + e + " | " + DateTime.Now.ToString());
-			}
+
+			protocol.SetParameter(Parameter.patch_failover_status_11, status);
+
 
 
 			//fill table
