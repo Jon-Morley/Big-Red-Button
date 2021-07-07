@@ -49,6 +49,13 @@ Revision History (auto generated):
 DATE          VERSION    AUTHOR              COMMENTS
 
 10/06/2021    1.0.0.1    Jon Morley, DAZN    NF: Initial version
+
+
+Revision History (auto generated):
+
+DATE          VERSION    AUTHOR              COMMENTS
+
+10/06/2021    1.0.0.1    Jon Morley, DAZN    NF: Initial version
 -->
 <Protocol xmlns="http://www.skyline.be/protocol">
 	<Name>HTTP Testing</Name>
@@ -61,7 +68,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 	<DeviceOID />
 	<ElementType>Management System</ElementType>
 	<Type relativeTimers="true">http</Type>
-	<Display defaultPage="General" pageOrder="Configuration;General" wideColumnPages="Configuration;General" />
+	<Display defaultPage="Caches" pageOrder="Configuration;Caches;Granular Cache Control" wideColumnPages="Configuration;Caches;Granular Cache Control" />
 	<SNMP includepages="true">auto</SNMP>
 	<Params>
 		<Param id="2">
@@ -381,9 +388,9 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
-						<Page>General</Page>
+						<Page>Caches</Page>
 						<Column>0</Column>
-						<Row>8</Row>
+						<Row>1</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -407,9 +414,9 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
-						<Page>General</Page>
+						<Page>Granular Cache Control</Page>
 						<Column>0</Column>
-						<Row>9</Row>
+						<Row>1</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -524,7 +531,12 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
-						<Page>General</Page>
+						<Page>Caches</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+					<Position>
+						<Page>Granular Cache Control</Page>
 						<Column>0</Column>
 						<Row>0</Row>
 					</Position>
@@ -664,9 +676,9 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
-						<Page>General</Page>
+						<Page>Caches</Page>
 						<Column>0</Column>
-						<Row>1</Row>
+						<Row>2</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -696,9 +708,9 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
-						<Page>General</Page>
+						<Page>Caches</Page>
 						<Column>0</Column>
-						<Row>2</Row>
+						<Row>3</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -722,9 +734,9 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
-						<Page>General</Page>
+						<Page>Caches</Page>
 						<Column>0</Column>
-						<Row>3</Row>
+						<Row>4</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -746,13 +758,6 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
-				<Positions>
-					<Position>
-						<Page>General</Page>
-						<Column>0</Column>
-						<Row>4</Row>
-					</Position>
-				</Positions>
 			</Display>
 			<Measurement>
 				<Type width="110">button</Type>
@@ -778,13 +783,6 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
-				<Positions>
-					<Position>
-						<Page>General</Page>
-						<Column>0</Column>
-						<Row>5</Row>
-					</Position>
-				</Positions>
 			</Display>
 			<Measurement>
 				<Type>string</Type>
@@ -806,9 +804,9 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
-						<Page>General</Page>
+						<Page>Granular Cache Control</Page>
 						<Column>0</Column>
-						<Row>7</Row>
+						<Row>3</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -838,9 +836,9 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
-						<Page>General</Page>
+						<Page>Granular Cache Control</Page>
 						<Column>0</Column>
-						<Row>6</Row>
+						<Row>4</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -867,7 +865,8 @@ DATE          VERSION    AUTHOR              COMMENTS
 		</Session>
 		<Session id="1031" name="SendPATCH" loginMethod="credentials" userName="3" password="4" keepAlive="true" ignoreTimeout="true">
 			<Connection id="1" name="SendPATCH">
-				<Request verb="PATCH" url="/api/6/http/upstreams/test/servers/0"> <!-- "test" is the name of the Upstream object, servers will be 0 or 1-->
+				<Request verb="PATCH" url="/api/6/http/upstreams/test/servers/0">
+					<!-- "test" is the name of the Upstream object, servers will be 0 or 1-->
 					<Data>{"down": true }</Data>
 				</Request>
 				<Response statusCode="200">
@@ -875,10 +874,10 @@ DATE          VERSION    AUTHOR              COMMENTS
 				</Response>
 			</Connection>
 		</Session>
-			<Session id="1032" name="SendPATCHwithPID" loginMethod="credentials" userName="3" password="4" keepAlive="true" ignoreTimeout="true">
+		<Session id="1032" name="SendPATCHwithPID" loginMethod="credentials" userName="3" password="4" keepAlive="true" ignoreTimeout="true">
 			<Connection id="1" name="SendPATCHwithPID">
 				<Request verb="PATCH" pid="7">
-					<Data pid="8"></Data>
+					<Data pid="8" />
 				</Request>
 				<Response statusCode="200">
 					<Content pid="1091" />
@@ -897,17 +896,17 @@ DATE          VERSION    AUTHOR              COMMENTS
 			
 		</QAction>
 		<QAction id="1081" name="GetInitialEndPointInfo_ProcessReturn" encoding="csharp" triggers="1081">
+			
 		</QAction>
-		
 		<QAction id="1091" name="SendPatch_ProcessReturn ALL PEER[0] DOWN PEER[1] UP" encoding="csharp" triggers="1091">
+			
 		</QAction>
-		
 		<QAction id="1092" name="Build PATCH pids ALL PEER[0] DOWN PEER[1] UP" encoding="csharp" triggers="1092">
+			
 		</QAction>
-		
 		<QAction id="1093" name="Build PATCH pids ALL PEER[1] DOWN PEER[0] UP" encoding="csharp" triggers="1093">
+			
 		</QAction>
-		
 	</QActions>
 	<Groups>
 		<Group id="2">
@@ -919,8 +918,8 @@ DATE          VERSION    AUTHOR              COMMENTS
 			</Content>
 		</Group>
 		<Group id="3">
-			<Name>HTTP_Get</Name>
-			<Description>HTTP Get</Description>
+			<Name>HTTP_GetStatus</Name>
+			<Description>HTTP Get Status of all Caches</Description>
 			<Type>poll</Type>
 			<Content>
 				<Session>1030</Session>
@@ -934,7 +933,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<Session>1031</Session>
 			</Content>
 		</Group>
-			<Group id="5">
+		<Group id="5">
 			<Name>HTTP_PATCHwithPID</Name>
 			<Description>HTTP PATCH with pid data and uri</Description>
 			<Type>poll</Type>
@@ -971,7 +970,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 				<Id>4</Id>
 			</Content>
 		</Trigger>
-			<Trigger id="4">
+		<Trigger id="4">
 			<Name>Manually Run Session 1032</Name>
 			<On id="7">parameter</On>
 			<Time>change</Time>
@@ -979,7 +978,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 			<Content>
 				<Id>5</Id>
 			</Content>
-		</Trigger>	
+		</Trigger>
 	</Triggers>
 	<Actions>
 		<Action id="1">
@@ -1002,7 +1001,7 @@ DATE          VERSION    AUTHOR              COMMENTS
 			<On id="4">group</On>
 			<Type>execute next</Type>
 		</Action>
-			<Action id="5">
+		<Action id="5">
 			<Name>Manually Run Session 1032</Name>
 			<On id="5">group</On>
 			<Type>execute next</Type>
@@ -1010,10 +1009,11 @@ DATE          VERSION    AUTHOR              COMMENTS
 	</Actions>
 	<Timers>
 		<Timer id="1">
-			<Name>Fast Timer (10s)</Name>
-			<Time initial="true">10000</Time>
+			<Name>Fast Timer (5s)</Name>
+			<Time initial="true">5000</Time>
 			<Interval>75</Interval>
 			<Content>
+				<Group>3</Group>
 			</Content>
 		</Timer>
 		<Timer id="2">
@@ -1021,7 +1021,6 @@ DATE          VERSION    AUTHOR              COMMENTS
 			<Time initial="true" dataDisplay="30000">60000</Time>
 			<Interval>75</Interval>
 			<Content>
-				<Group>3</Group>
 			</Content>
 		</Timer>
 		<Timer id="3">

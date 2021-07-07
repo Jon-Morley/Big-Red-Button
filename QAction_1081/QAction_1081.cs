@@ -16,14 +16,14 @@ using System.Linq;
 /// </summary>
 public static class QAction
 {
-    /// <summary>
-    /// The QAction entry point.
-    /// </summary>
-    /// <param name="protocol">Link with SLProtocol process.</param>
-    public static void Run(SLProtocolExt protocol)
-    {
-        try
-        {
+	/// <summary>
+	/// The QAction entry point.
+	/// </summary>
+	/// <param name="protocol">Link with SLProtocol process.</param>
+	public static void Run(SLProtocolExt protocol)
+	{
+		try
+		{
 			List<QActionTableRow> tableRows = new List<QActionTableRow>();
 
 			string serverFilterString = (string)protocol.GetParameter(Parameter.server_filter_6);
@@ -53,8 +53,8 @@ public static class QAction
 
 				//output += "|Inners:" + inners.Count.ToString();
 				//output += inners[0].SelectToken("server").ToString();
-				
-				foreach(JObject jArr in inners)
+
+				foreach (JObject jArr in inners)
 				{
 					string id = jArr.SelectToken("id").ToString();
 					string serverName = jArr.SelectToken("server").ToString();
@@ -85,10 +85,13 @@ public static class QAction
 
 			//check the status and update status pid for the Visio
 			string status = "UP";
-			foreach(CachesQActionRow obj in tableRows)
+			foreach (CachesQActionRow obj in tableRows)
 			{
-				if (((string)obj.Caches_peer_id_1003).Equals("0") &&  ((string)obj.Caches_peer_state_1006).Equals("down"))
+				if (((string)obj.Caches_peer_id_1003).Equals("0") && ((string)obj.Caches_peer_state_1006).Equals("down"))
+				{
 					status = "DOWN";
+					break;
+				}
 			}
 
 			protocol.SetParameter(Parameter.patch_failover_status_11, status);
@@ -102,10 +105,10 @@ public static class QAction
 
 
 
-        }
-        catch (Exception ex)
-        {
-            protocol.Log("QA" + protocol.QActionID + "|" + protocol.GetTriggerParameter() + "|Run|Exception thrown:" + Environment.NewLine + ex, LogType.Error, LogLevel.NoLogging);
-        }
-    }
+		}
+		catch (Exception ex)
+		{
+			protocol.Log("QA" + protocol.QActionID + "|" + protocol.GetTriggerParameter() + "|Run|Exception thrown:" + Environment.NewLine + ex, LogType.Error, LogLevel.NoLogging);
+		}
+	}
 }
